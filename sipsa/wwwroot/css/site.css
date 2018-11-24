@@ -73,3 +73,21 @@ body {
     font-size: 14px;
     color: steelblue;
 }
+
+.input-small {
+  width: 40%;
+}
+
+.input-medium {
+  width: 70%;
+}
+
+.login {
+  margin: auto;
+  max-width: 200px;
+}
+
+.checkbox-edit {
+  padding-left: 30px;
+  margin-top: -5px;
+}

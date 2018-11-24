@@ -1,0 +1,30 @@
+@model sipsa.Models.Login
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="login">
+    <h2 class="text-center">@ViewData["Title"]</h2>
+    <div class="row">
+        <form method="post">
+            <hr>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" class="form-control">
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
