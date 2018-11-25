@@ -91,3 +91,7 @@ body {
   padding-left: 30px;
   margin-top: -5px;
 }
+
+.user-information {
+  flex-grow: 0;
+}

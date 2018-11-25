@@ -1,5 +1,4 @@
 using Amazon.DynamoDBv2.DataModel;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace sipsa.Models
@@ -19,7 +18,7 @@ namespace sipsa.Models
         [DynamoDBProperty, Required(ErrorMessage = "Required"), DataType(DataType.Password), StringLength(50, MinimumLength = 6, ErrorMessage = "StringLength")]
         public string Senha { get; set; }
 
-        [DynamoDBProperty, Display(Name = "Permissões")]
-        public List<string> Permissoes { get; set; }
+        [DynamoDBProperty, Display(Name = "Permissão")]
+        public string Permissao { get; set; }
     }
 }

@@ -46,13 +46,10 @@ namespace sipsa._Base.Autenticacao
             var direitos = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, usuario.Email),
-                new Claim("Nome", usuario.Nome)
+                new Claim("Nome", usuario.Nome),
+                new Claim(ClaimTypes.Role, usuario.Permissao)
             };
-            // As permissões que o mesmo possui.
-            foreach (var permissao in usuario.Permissoes)
-            {
-                direitos.Add(new Claim(ClaimTypes.Role, permissao));
-            }
+
             // Adiciona as configurações.
             var identificadorDosDireitos = new ClaimsIdentity(direitos, "login");
             return new ClaimsPrincipal(identificadorDosDireitos);

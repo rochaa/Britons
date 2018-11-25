@@ -32,15 +32,15 @@
                         @if (@isUserConnected)
                         {         
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuários</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Usuários</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Member" asp-action="Index">Membros</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Membro" asp-action="Index">Membros</a>
                             </li>    
                         }
                     </ul>                 
                 </div>
-                <div class="navbar-collapse collapse" >
+                <div class="navbar-collapse collapse user-information" >
                     <partial name="_LoginPartial" />
                 </div>
             </div>

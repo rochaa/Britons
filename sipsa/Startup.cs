@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +30,13 @@ namespace sipsa
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/Logon/Login";
+                    options.AccessDeniedPath = "/Logon/AccessDenied";
                 });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Administrador", policy =>
+                    policy.RequireClaim(ClaimTypes.Role, "Administrador"));
+            });
             // Busca recursos para exibição de mensagens.
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             // Serviço de comunicação com o banco de dados.

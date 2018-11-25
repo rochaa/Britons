@@ -47,5 +47,8 @@ namespace sipsa.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login", "Logon");
         }
+
+        [HttpGet]
+        public IActionResult AccessDenied() => View();
     }
 }
