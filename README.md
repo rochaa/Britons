@@ -4,5 +4,3 @@
 Asp.net Core 2.2 MVC
 
 DynamoDB
-
-Google Cloud
