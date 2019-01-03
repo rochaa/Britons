@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -9,17 +10,10 @@ namespace sipsa.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IConfiguration _configuration;
-
-        public HomeController(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-
         public IActionResult Index()
         {
-            ViewBag.VersionData = _configuration["Version:Data"];
-            ViewBag.VersionRelease = _configuration["Version:Release"];
+            ViewBag.VersionData = Environment.GetEnvironmentVariable("Version_Data");
+            ViewBag.VersionRelease = Environment.GetEnvironmentVariable("Version_Release");
 
             return View();
         }

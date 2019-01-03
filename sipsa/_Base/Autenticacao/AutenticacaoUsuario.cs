@@ -8,18 +8,17 @@ using Amazon.DynamoDBv2.DocumentModel;
 using Microsoft.Extensions.Configuration;
 using sipsa.Models;
 using sipsa.Util;
+using System;
 
 namespace sipsa._Base.Autenticacao
 {
     public class AutenticacaoUsuario
     {
         private readonly DynamoDBContext db;
-        private readonly IConfiguration _configuracao;
 
-        public AutenticacaoUsuario(DynamoDBContext context, IConfiguration configuracao)
+        public AutenticacaoUsuario(DynamoDBContext context)
         {
             db = context;
-            _configuracao = configuracao;
         }
 
         public async Task<Usuario> AutenticarUsuario(string email, string senha)
@@ -31,7 +30,7 @@ namespace sipsa._Base.Autenticacao
             var usuario = (await db.ScanAsync<Usuario>(conditions).GetRemainingAsync()).FirstOrDefault();
             if (usuario != null)
             {
-                var senhaDb = Password.DecryptString(usuario.Senha, _configuracao["KeyPassword"]);
+                var senhaDb = Password.DecryptString(usuario.Senha, Environment.GetEnvironmentVariable("KeyPassword"));
                 if (senhaDb == senha)
                 {
                     return usuario;
