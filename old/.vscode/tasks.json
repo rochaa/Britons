@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/test/sipsa.DomainTest/sipsa.DomainTest.csproj"
+                "${workspaceFolder}/sipsa/sipsa.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

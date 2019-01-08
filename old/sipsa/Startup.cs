@@ -25,6 +25,7 @@ namespace sipsa
         {
             // Injeção das classes do sistema.
             services.AddScoped<AutenticacaoUsuario>();
+
             // Serviço de autenticação e armazenamento em cookie.
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -37,11 +38,15 @@ namespace sipsa
                 options.AddPolicy("Administrador", policy =>
                     policy.RequireClaim(ClaimTypes.Role, "Administrador"));
             });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             // Busca recursos para exibição de mensagens.
-            services.AddLocalization(o => o.ResourcesPath = "Resources");
+            services.AddLocalization(o => o.ResourcesPath = "_Base/Resources");
+
             // Serviço de comunicação com o banco de dados.
             services.AddDynamoDB(Configuration);
 
+            // Mvc
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddDataAnnotationsLocalization(o =>
@@ -51,10 +56,8 @@ namespace sipsa
                         return factory.Create(typeof(Validation));
                     };
                 });
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
