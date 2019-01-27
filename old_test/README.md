@@ -3,8 +3,10 @@
 
 Asp.net Core 3.0 MVC
 
-Entity Framework
+Elastic Beanstalk
 
-SQL Server
+DynamoDB
 
-Azure
+TDD
+
+DDD
