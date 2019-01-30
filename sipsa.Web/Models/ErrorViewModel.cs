@@ -1,6 +1,6 @@
 using System;
 
-namespace sipsa.Interface.Models
+namespace sipsa.Web.Models
 {
     public class ErrorViewModel
     {

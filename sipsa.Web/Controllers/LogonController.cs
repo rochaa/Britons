@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using sipsa.Dominio.Usuarios;
 
-namespace sipsa.Interface.Controllers
+namespace sipsa.Web.Controllers
 {
     public class LogonController : Controller
     {

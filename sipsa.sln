@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sipsa.Dominio", "sipsa.Domi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sipsa.Dados", "sipsa.Dados\sipsa.Dados.csproj", "{0B8BDC58-666A-4352-8A8D-77A218586C3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sipsa.Interface", "sipsa.Interface\sipsa.Interface.csproj", "{E40B6023-96A2-4855-931D-8F0D9E449C69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sipsa.Web", "sipsa.Web\sipsa.Web.csproj", "{E40B6023-96A2-4855-931D-8F0D9E449C69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

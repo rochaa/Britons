@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/sipsa.Interface/bin/Debug/netcoreapp3.0/sipsa.Interface.dll",
+            "program": "${workspaceFolder}/sipsa.Web/bin/Debug/netcoreapp3.0/sipsa.Web.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

@@ -15,7 +15,7 @@ using sipsa.Dados;
 using sipsa.Dominio.Usuarios;
 using Microsoft.EntityFrameworkCore;
 
-namespace sipsa.Interface
+namespace sipsa.Web
 {
     public class Startup
     {
