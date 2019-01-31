@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/sipsa.Web/bin/Debug/netcoreapp3.0/sipsa.Web.dll",
+            "program": "${workspaceFolder}/sipsa.Web/bin/Debug/netcoreapp2.2/sipsa.Web.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/sipsa.Web",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
             "launchBrowser": {

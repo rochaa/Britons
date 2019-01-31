@@ -1,11 +1,13 @@
+using Amazon.DynamoDBv2.DataModel;
 using FluentValidation;
 using FluentValidation.Results;
 
 namespace sipsa.Dominio._Base
 {
-    public abstract class ValidadorBase<T> : AbstractValidator<T>
+    public class Entidade<T> : AbstractValidator<T>
     {
-        public int Id { get; set; }
+        [DynamoDBHashKey]
+        public string Id { get; protected set; }
 
         protected void Validar(T dominio)
         {

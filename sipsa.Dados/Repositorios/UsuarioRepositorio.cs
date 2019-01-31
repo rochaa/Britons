@@ -8,7 +8,7 @@ using sipsa.Dominio.Usuarios;
 
 namespace sipsa.Dados.Repositorios
 {
-    public class UsuarioRepositorio : _RepositorioBase<Usuario>, IUsuarioRepositorio
+    public class UsuarioRepositorio : _Repositorio<Usuario>, IUsuarioRepositorio
     {
         public UsuarioRepositorio(SipsaContexto contexto)
         : base(contexto, Environment.GetEnvironmentVariable("TB_Usuarios"))

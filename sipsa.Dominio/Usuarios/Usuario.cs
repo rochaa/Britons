@@ -1,16 +1,25 @@
+using System;
 using System.ComponentModel;
 using System.Linq;
+using Amazon.DynamoDBv2.DataModel;
 using FluentValidation;
 using FluentValidation.Results;
 using sipsa.Dominio._Base;
 
 namespace sipsa.Dominio.Usuarios
 {
-    public class Usuario : ValidadorBase<Usuario>, IEntidade
+    public class Usuario : Entidade<Usuario>
     {
+        [DynamoDBProperty]
         public string Nome { get; private set; }
+
+        [DynamoDBProperty]
         public string Email { get; private set; }
+
+        [DynamoDBProperty]
         public string Senha { get; private set; }
+
+        [DynamoDBProperty]
         public string Permissao { get; private set; }
 
         public Usuario(string nome, string email, string senha, string permissao)
@@ -23,6 +32,8 @@ namespace sipsa.Dominio.Usuarios
             Regras();
             Validar(this);
         }
+
+        public Usuario() { }
 
         private void Regras()
         {

@@ -5,7 +5,7 @@ using sipsa.Dominio._Base;
 
 namespace sipsa.Dominio.Membros
 {
-    public class Membro : ValidadorBase<Membro>, IEntidade
+    public class Membro : Entidade<Membro>
     {
         public string Nome { get; private set; }
         public DateTime Nascimento { get; private set; }

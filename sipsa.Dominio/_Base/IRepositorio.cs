@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace sipsa.Dominio._Base
 {
-    public interface IRepositorio<TEntidade> where TEntidade : class
+    public interface IRepositorio<TEntidade>
     {
         Task<List<TEntidade>> ObterTodosAsync();
 
