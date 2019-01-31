@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DataModel;
-using Microsoft.EntityFrameworkCore;
 using sipsa.Dominio._Base;
 
 namespace sipsa.Dados.Repositorios

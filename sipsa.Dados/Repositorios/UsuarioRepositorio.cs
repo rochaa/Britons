@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
-using Microsoft.EntityFrameworkCore;
 using sipsa.Dominio.Usuarios;
 
 namespace sipsa.Dados.Repositorios
