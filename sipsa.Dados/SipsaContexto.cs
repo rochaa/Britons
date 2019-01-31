@@ -1,20 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using sipsa.Dominio.Membros;
-using sipsa.Dominio.Usuarios;
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 
 namespace sipsa.Dados
 {
-    public class SipsaContexto : DbContext
+    public class SipsaContexto : DynamoDBContext
     {
-        public SipsaContexto(DbContextOptions<SipsaContexto> options) : base(options) { }
-
-        public DbSet<Membro> Membros { get; set; }
-        public DbSet<Telefone> Telefones { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
+        public SipsaContexto(IAmazonDynamoDB client) : base(client) 
         {
-            base.OnModelCreating(builder);
+            
         }
     }
 }

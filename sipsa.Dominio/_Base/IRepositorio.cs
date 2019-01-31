@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -5,14 +6,12 @@ namespace sipsa.Dominio._Base
 {
     public interface IRepositorio<TEntidade> where TEntidade : class
     {
-        IQueryable<TEntidade> ObterTodos();
+        Task<List<TEntidade>> ObterTodosAsync();
 
-        Task<TEntidade> ObterPorId(int id);
+        Task<TEntidade> ObterPorIdAsync(string id);
 
-        Task Criar(TEntidade entidade);
+        Task SalvarAsync(TEntidade entidade);
 
-        Task Atualizar(int id, TEntidade entidade);
-
-        Task Remover(int id);
+        Task RemoverAsync(TEntidade entidade);
     }
 }

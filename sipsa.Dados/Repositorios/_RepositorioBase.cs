@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.DynamoDBv2.DataModel;
 using Microsoft.EntityFrameworkCore;
 using sipsa.Dominio._Base;
 
@@ -9,41 +11,40 @@ namespace sipsa.Dados.Repositorios
     public class _RepositorioBase<TEntidade> : IRepositorio<TEntidade> where TEntidade : class, IEntidade
     {
         private readonly SipsaContexto _contexto;
+        private DynamoDBOperationConfig _config;
 
-        public _RepositorioBase(SipsaContexto  contexto)
+        public _RepositorioBase(SipsaContexto contexto, string tabela) 
         {
             _contexto = contexto;
+            _config = new DynamoDBOperationConfig()
+            {
+                OverrideTableName = tabela
+            };
         }
 
-        public IQueryable<TEntidade> ObterTodos()
+        protected async Task<List<TEntidade>> ObterComFiltrosAsync(IEnumerable<ScanCondition> filtro)
         {
-            return _contexto.Set<TEntidade>().AsNoTracking();
+            return await _contexto.ScanAsync<TEntidade>(filtro).GetRemainingAsync();
         }
 
-        public async Task<TEntidade> ObterPorId(int id)
+        public async Task<List<TEntidade>> ObterTodosAsync()
         {
-            return await _contexto.Set<TEntidade>()
-                .AsNoTracking()
-                .FirstOrDefaultAsync(e => e.Id == id);
+            return await ObterComFiltrosAsync(null);
         }
 
-        public async Task Criar(TEntidade entidade)
+        public async Task<TEntidade> ObterPorIdAsync(string id)
         {
-            await _contexto.Set<TEntidade>().AddAsync(entidade);
-            await _contexto.SaveChangesAsync();
+            return await _contexto.LoadAsync<TEntidade>(id, _config);
         }
 
-        public async Task Atualizar(int id, TEntidade entidade)
+        public async Task SalvarAsync(TEntidade item)
         {
-            _contexto.Set<TEntidade>().Update(entidade);
-            await _contexto.SaveChangesAsync();
+            await _contexto.SaveAsync(item, _config);
         }
 
-        public async Task Remover(int id)
+        public async Task RemoverAsync(TEntidade item)
         {
-            var entidade = await _contexto.Set<TEntidade>().FindAsync(id);
-            _contexto.Set<TEntidade>().Remove(entidade);
-            await _contexto.SaveChangesAsync();
+            await _contexto.DeleteAsync(item, _config);
         }
     }
 }

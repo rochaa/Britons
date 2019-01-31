@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using sipsa.Dados;
 using sipsa.Dominio.Usuarios;
-using Microsoft.EntityFrameworkCore;
+using Amazon.Runtime;
+using Amazon.DynamoDBv2;
+using Amazon;
+using sipsa.Dados.Repositorios;
+using sipsa.Dominio.Membros;
 
 namespace sipsa.Web
 {
@@ -30,6 +30,8 @@ namespace sipsa.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // Injeção das classes do sistema.
+            services.AddScoped(typeof(IUsuarioRepositorio), typeof(UsuarioRepositorio));
+            services.AddScoped(typeof(IMembroRepositorio), typeof(MembroRepositorio));
             services.AddScoped<UsuarioAutenticacao>();
 
             // Serviço de autenticação e armazenamento em cookie.
@@ -47,8 +49,11 @@ namespace sipsa.Web
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Serviço de comunicação com o banco de dados.
-            services.AddDbContext<SipsaContexto>(options => 
-                options.UseSqlServer(Environment.GetEnvironmentVariable("ConnectionString")));
+            var credenciais = new BasicAWSCredentials(
+                Environment.GetEnvironmentVariable("AWSDynamoDB_AccessKey"), 
+                Environment.GetEnvironmentVariable("AWSDynamoDB_SecretKey"));
+            var client = new AmazonDynamoDBClient(credenciais, RegionEndpoint.SAEast1);
+            services.AddSingleton(new SipsaContexto(client));
 
             // Mvc
             services.AddMvc()

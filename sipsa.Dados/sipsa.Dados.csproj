@@ -3,9 +3,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview.18572.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0-preview.18572.1"/>
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.17.4"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\sipsa.Dominio\sipsa.Dominio.csproj" />
+    <ProjectReference Include="..\sipsa.Dominio\sipsa.Dominio.csproj"/>
   </ItemGroup>
 </Project>
