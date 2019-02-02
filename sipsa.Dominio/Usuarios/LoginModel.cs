@@ -4,10 +4,10 @@ namespace sipsa.Dominio.Usuarios
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Required"), EmailAddress(ErrorMessage = "EmailAddress")]
+        [Required(ErrorMessage = "Email obrigatório"), EmailAddress(ErrorMessage = "Email inválido")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Required"), DataType(DataType.Password)]
+        [Required(ErrorMessage = "Senha requerida"), DataType(DataType.Password)]
         public string Senha { get; set; }
     }
 }

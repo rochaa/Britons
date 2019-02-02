@@ -14,6 +14,7 @@ using Amazon.DynamoDBv2;
 using Amazon;
 using sipsa.Dados.Repositorios;
 using sipsa.Dominio.Membros;
+using sipsa.Web._Base;
 
 namespace sipsa.Web
 {
@@ -56,8 +57,10 @@ namespace sipsa.Web
             services.AddSingleton(new SipsaContexto(client));
 
             // Mvc
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options => {
+                options.Filters.Add(new SipsaExceptionFilterAttribute());
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

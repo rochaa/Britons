@@ -23,11 +23,11 @@ namespace sipsa.Dominio.Usuarios
         {
             var usuario = await _usuarioRepositorio.ObterPorEmail(email);
             if (usuario == null)
-                throw new DominioException(nameof(Usuario), UsuarioNaoEncontrado);
+                throw new DominioException("UsuarioAutenticacao.Autenticar", UsuarioNaoEncontrado);
             
             var senhaDb = Password.DecryptString(usuario.Senha, Environment.GetEnvironmentVariable("KeyPassword"));
             if (senhaDb != senha)
-                throw new DominioException(nameof(Usuario), SenhaIncorreta);
+                throw new DominioException("UsuarioAutenticacao.Autenticar", SenhaIncorreta);
 
             return usuario;
         }
