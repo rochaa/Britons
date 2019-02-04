@@ -19,9 +19,9 @@ namespace sipsa.Dominio.Usuarios
             _usuarioRepositorio = usuarioRepositorio;
         }
 
-        public async Task<Usuario> Autenticar(string email, string senha)
+        public async Task<Usuario> AutenticarAsync(string email, string senha)
         {
-            var usuario = await _usuarioRepositorio.ObterPorEmail(email);
+            var usuario = await _usuarioRepositorio.ObterPorEmailAsync(email);
             if (usuario == null)
                 throw new DominioException("UsuarioAutenticacao.Autenticar", UsuarioNaoEncontrado);
             

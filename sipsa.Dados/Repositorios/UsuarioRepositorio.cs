@@ -16,7 +16,7 @@ namespace sipsa.Dados.Repositorios
 
         }
 
-        public async Task<Usuario> ObterPorEmail(string email)
+        public async Task<Usuario> ObterPorEmailAsync(string email)
         {
             List<ScanCondition> filtros = new List<ScanCondition>
             {

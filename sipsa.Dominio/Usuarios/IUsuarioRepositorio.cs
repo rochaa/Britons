@@ -5,6 +5,6 @@ namespace sipsa.Dominio.Usuarios
 {
     public interface IUsuarioRepositorio : IRepositorio<Usuario>
     {
-        Task<Usuario> ObterPorEmail(string email);
+        Task<Usuario> ObterPorEmailAsync(string email);
     }
 }

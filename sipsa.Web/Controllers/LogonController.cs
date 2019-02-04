@@ -24,7 +24,7 @@ namespace sipsa.Web.Controllers
             if (ModelState.IsValid)
             {
                 // 1. Autenticação do usuário.
-                var usuario = await _usuarioAutenticacao.Autenticar(login.Email, login.Senha);
+                var usuario = await _usuarioAutenticacao.AutenticarAsync(login.Email, login.Senha);
                 if (usuario == null)
                 {
                     ModelState.AddModelError(string.Empty, "Login inválido.");
