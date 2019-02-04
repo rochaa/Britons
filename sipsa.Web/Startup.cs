@@ -15,6 +15,8 @@ using Amazon;
 using sipsa.Dados.Repositorios;
 using sipsa.Dominio.Membros;
 using sipsa.Web._Base;
+using AutoMapper;
+using sipsa.Web.Models;
 
 namespace sipsa.Web
 {
@@ -30,11 +32,6 @@ namespace sipsa.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Injeção das classes do sistema.
-            services.AddScoped(typeof(IUsuarioRepositorio), typeof(UsuarioRepositorio));
-            services.AddScoped(typeof(IMembroRepositorio), typeof(MembroRepositorio));
-            services.AddScoped<UsuarioAutenticacao>();
-
             // Serviço de autenticação e armazenamento em cookie.
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -44,8 +41,8 @@ namespace sipsa.Web
                 });
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("Administrador", policy =>
-                    policy.RequireClaim(ClaimTypes.Role, "Administrador"));
+                options.AddPolicy("ADMINISTRADOR", policy =>
+                    policy.RequireClaim(ClaimTypes.Role, "ADMINISTRADOR"));
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -61,6 +58,16 @@ namespace sipsa.Web
                 options.Filters.Add(new SipsaExceptionFilterAttribute());
             })
             .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Injeção das classes do sistema.
+            services.AddScoped(typeof(IUsuarioRepositorio), typeof(UsuarioRepositorio));
+            services.AddScoped(typeof(IMembroRepositorio), typeof(MembroRepositorio));
+            services.AddScoped<UsuarioAutenticacao>();
+
+            // Mapeamento das classes de domínio com os modelos.
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<Usuario, UsuarioModel>(); }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

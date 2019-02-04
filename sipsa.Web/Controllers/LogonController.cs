@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using sipsa.Dominio.Usuarios;
+using sipsa.Web.Models;
 
 namespace sipsa.Web.Controllers
 {

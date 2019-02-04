@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace sipsa.Dominio.Usuarios
+namespace sipsa.Web.Models
 {
     public class LoginModel
     {
