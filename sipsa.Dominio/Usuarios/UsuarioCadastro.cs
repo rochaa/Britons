@@ -16,25 +16,30 @@ namespace sipsa.Dominio.Usuarios
         public async Task ArmazenarAsync(string id, string nome, string email, string senha, string permissao)
         {
             var usuario = await _usuarioRepositorio.ObterPorIdAsync(id);
-            var usuarioComEmailJaExistente = await _usuarioRepositorio.ObterPorEmailAsync(email);
-
+            
             if(usuario == null)
             {
-                if (usuarioComEmailJaExistente != null)
-                    throw new DominioException("UsuarioCadastro.ArmazenarAsync", EmailJaExistente);
+                await ChecarExistenciaDoEmail(email);
 
                 usuario = new Usuario(nome, email, senha, permissao);
                 usuario.CriptografarSenha(senha);
             }
             else
             {
-                if (usuario.Email != email && usuarioComEmailJaExistente != null)
-                    throw new DominioException("UsuarioCadastro.ArmazenarAsync", EmailJaExistente);
+                if (usuario.Email != email) 
+                    await ChecarExistenciaDoEmail(email);
 
                 usuario.Alterar(nome, email, permissao);
             }
 
             await _usuarioRepositorio.SalvarAsync(usuario);
+        }
+
+        private async Task ChecarExistenciaDoEmail(string email)
+        {
+            var usuarioComEmailJaExistente = await _usuarioRepositorio.ObterPorEmailAsync(email);
+            if (usuarioComEmailJaExistente != null)
+                throw new DominioException("UsuarioCadastro.ArmazenarAsync", EmailJaExistente);
         }
     }
 }

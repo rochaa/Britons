@@ -19,7 +19,7 @@ namespace sipsa.Web._Base
 
             if (exception is DominioException)
             {
-                var exDominio = exception as DominioException;            
+                var exDominio = exception as DominioException;
                 erros = exDominio.Erros;
             }
             else
@@ -29,13 +29,12 @@ namespace sipsa.Web._Base
                 result.ViewName = "Error";
             }
             
-            var modelState = new ModelStateDictionary();
             foreach (var erro in erros)
             {
-                modelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
+                context.ModelState.AddModelError(erro.PropertyName, erro.ErrorMessage);
             }
             
-            result.ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), modelState);
+            result.ViewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), context.ModelState);
             context.Result = result;
         }
     }

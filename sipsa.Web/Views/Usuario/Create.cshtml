@@ -28,6 +28,11 @@
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ConfirmacaoSenha" class="control-label"></label>
+                <input asp-for="ConfirmacaoSenha" class="form-control input-small" />
+                <span asp-validation-for="ConfirmacaoSenha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Permissao" class="control-label"></label>
                 <div class="radio">
                     <label><input asp-for="Permissao" type="radio" value="ADMINISTRADOR" > Administrador</label>

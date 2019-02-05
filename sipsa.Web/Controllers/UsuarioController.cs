@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -12,10 +13,12 @@ namespace sipsa.Web.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly UsuarioCadastro _usuarioCadastro;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio, UsuarioCadastro usuarioCadastro)
         {
-            _usuarioRepositorio = usuarioRepositorio;    
+            _usuarioRepositorio = usuarioRepositorio;
+            _usuarioCadastro = usuarioCadastro;
         }
 
         public async Task<IActionResult> Index()
@@ -24,6 +27,24 @@ namespace sipsa.Web.Controllers
             var usuariosModel = usuarios.Select(u => Mapper.Map<UsuarioModel>(u)).ToList();
 
             return View(usuariosModel);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(UsuarioModel usuario)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            usuario.Id = Guid.NewGuid().ToString();
+            await _usuarioCadastro.ArmazenarAsync(usuario.Id, usuario.Nome, usuario.Email, usuario.Senha, usuario.Permissao);
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -63,6 +63,7 @@ namespace sipsa.Web
             services.AddScoped(typeof(IUsuarioRepositorio), typeof(UsuarioRepositorio));
             services.AddScoped(typeof(IMembroRepositorio), typeof(MembroRepositorio));
             services.AddScoped<UsuarioAutenticacao>();
+            services.AddScoped<UsuarioCadastro>();
 
             // Mapeamento das classes de domínio com os modelos.
             Mapper.Initialize(cfg => {
