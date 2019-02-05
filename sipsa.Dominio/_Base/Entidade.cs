@@ -7,7 +7,7 @@ namespace sipsa.Dominio._Base
     public class Entidade<T> : AbstractValidator<T>
     {
         [DynamoDBHashKey]
-        public string Id { get; protected set; }
+        public string Id { get; set; }
 
         protected void Validar(T dominio)
         {

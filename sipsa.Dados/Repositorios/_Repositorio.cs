@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.DataModel;
@@ -31,11 +32,17 @@ namespace sipsa.Dados.Repositorios
 
         public async Task<TEntidade> ObterPorIdAsync(string id)
         {
+            if (string.IsNullOrEmpty(id))
+                return null;
+
             return await _contexto.LoadAsync<TEntidade>(id, _config);
         }
 
         public async Task SalvarAsync(TEntidade item)
         {
+            if (string.IsNullOrEmpty(item.Id))
+                item.Id = Guid.NewGuid().ToString();
+
             await _contexto.SaveAsync(item, _config);
         }
 

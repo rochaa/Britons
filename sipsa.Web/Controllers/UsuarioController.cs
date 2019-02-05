@@ -41,7 +41,6 @@ namespace sipsa.Web.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            usuario.Id = Guid.NewGuid().ToString();
             await _usuarioCadastro.ArmazenarAsync(usuario.Id, usuario.Nome, usuario.Email, usuario.Senha, usuario.Permissao);
 
             return RedirectToAction("Index");
