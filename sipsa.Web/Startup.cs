@@ -67,7 +67,8 @@ namespace sipsa.Web
 
             // Mapeamento das classes de domínio com os modelos.
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Usuario, UsuarioModel>(); }
+                cfg.CreateMap<Usuario, UsuarioModel>();
+                cfg.CreateMap<UsuarioModel, Usuario>(); }
             );
         }
 

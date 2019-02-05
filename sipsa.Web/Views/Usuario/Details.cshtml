@@ -1,0 +1,34 @@
+@model sipsa.Web.Models.UsuarioModel
+
+@{
+    ViewData["Title"] = "Usuário - Detalhes";
+}    
+<h2>Detalhes</h2>
+<div>    
+    <h4>Usuário</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Permissao)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Permissao)    
+        </dd>
+    </dl>    
+</div>    
+<div>    
+    <a asp-action="Edit" asp-route-id="@Model.Id">Alterar</a> |    
+    <a asp-action="Index">Voltar</a>
+</div>

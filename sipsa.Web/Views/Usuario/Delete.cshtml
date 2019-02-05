@@ -1,0 +1,37 @@
+@model sipsa.Web.Models.UsuarioModel;
+
+@{    
+    ViewData["Title"] = "Usuário - Exclusão";
+}
+<h2>Exclusão</h2>
+<h3>Tem certeza que deseja excluir este usuário?</h3>
+<div>
+    <h4>Usuário</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Permissao)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Permissao)    
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">    
+        <input type="hidden" asp-for="Id" />    
+        <input type="submit" value="Excluir" class="btn btn-danger" /> | 
+        <a asp-action="Index">Voltar</a>
+    </form>    
+</div>

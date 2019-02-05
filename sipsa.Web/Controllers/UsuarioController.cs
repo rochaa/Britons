@@ -36,14 +36,70 @@ namespace sipsa.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(UsuarioModel usuario)
+        public async Task<IActionResult> Create(UsuarioCriacaoModel usuarioCriacaoModel)
+        {
+            return await CriarOuAtualizarUsuario(usuarioCriacaoModel.Id, usuarioCriacaoModel.Nome,
+                usuarioCriacaoModel.Email, usuarioCriacaoModel.Senha, usuarioCriacaoModel.Permissao);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(string id)
+        {
+            return await CarregarUsuarioModel(id);
+        }
+   
+        [HttpPost]
+        public async Task<IActionResult> Edit(UsuarioModel usuarioModel)
+        {
+            return await CriarOuAtualizarUsuario(usuarioModel.Id, usuarioModel.Nome, usuarioModel.Email, 
+                null, usuarioModel.Permissao);
+        }
+
+        public async Task<IActionResult> Details(string id)
+        {
+            return await CarregarUsuarioModel(id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(string id)
+        {
+            return await CarregarUsuarioModel(id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UsuarioModel usuarioModel)
+        {
+            if (usuarioModel == null)
+                return RedirectToAction("Index");
+
+            var usuario = Mapper.Map<Usuario>(usuarioModel);
+            await _usuarioRepositorio.RemoverAsync(usuario);
+
+            return RedirectToAction("Index");
+        }
+
+        private async Task<IActionResult> CriarOuAtualizarUsuario(string id, string nome, string email, string senha, string permissao)
         {
             if (!ModelState.IsValid)
                 return View();
 
-            await _usuarioCadastro.ArmazenarAsync(usuario.Id, usuario.Nome, usuario.Email, usuario.Senha, usuario.Permissao);
+            await _usuarioCadastro.ArmazenarAsync(id, nome, email, senha, permissao);
 
             return RedirectToAction("Index");
+        }
+
+        private async Task<IActionResult> CarregarUsuarioModel(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return RedirectToAction("Index");
+
+            var usuario = await _usuarioRepositorio.ObterPorIdAsync(id);
+            if (usuario == null)
+                return RedirectToAction("Index");
+
+            var usuarioModel = Mapper.Map<UsuarioModel>(usuario);
+
+            return View(usuarioModel);
         }
     }
 }
