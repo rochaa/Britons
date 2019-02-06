@@ -29,14 +29,7 @@
                 }
             },
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "AWSDynamoDB_AccessKey": "AKIAJUHKZBBA2QJFJALA",
-                "AWSDynamoDB_SecretKey": "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",
-                "Version_Data": "20190205",
-                "Version_Release": "1.0",
-                "KeyPassword": "MVA1QDIwMThqZA==",
-                "TB_Usuarios": "Usuarios",
-                "TB_Membros": "Membros"
+                "ASPNETCORE_ENVIRONMENT": "Development"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
