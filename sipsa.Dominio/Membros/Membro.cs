@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using FluentValidation;
 using sipsa.Dominio._Base;
 
-namespace sipsa.Dominio.Membros
-{
-    public class Membro : Entidade
-    {
+namespace sipsa.Dominio.Membros {
+    public class Membro : Entidade {
         public string Nome { get; private set; }
         public DateTime Nascimento { get; private set; }
         public string Endereco { get; private set; }
@@ -22,11 +20,10 @@ namespace sipsa.Dominio.Membros
         public string Recepcao { get; private set; }
 
         public virtual List<Telefone> Telefone { get; private set; }
-    
-        public Membro(string nome, DateTime nascimento, string endereco, string bairro, string cep,
+
+        public Membro (string nome, DateTime nascimento, string endereco, string bairro, string cep,
             string naturalidade, string estadoCivil, string escolaridade, string profissao, string titulo,
-            DateTime admissao, int ata, string recepcao)
-        {
+            DateTime admissao, int ata, string recepcao) {
             Nome = nome;
             Nascimento = nascimento;
             Endereco = endereco;
