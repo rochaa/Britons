@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,10 @@ namespace sipsa.Web._Base {
 
             result.ViewData = new ViewDataDictionary (new EmptyModelMetadataProvider (), context.ModelState);
             context.Result = result;
+
+            Console.WriteLine($"Message: {exception.Message}");
+            Console.WriteLine($"Inner: {exception.InnerException}");
+            Console.WriteLine($"Source: {exception.Source}");
         }
     }
 }

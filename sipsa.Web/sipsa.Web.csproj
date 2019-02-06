@@ -1,15 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>sipsa.Web</RootNamespace>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\sipsa.Dominio\sipsa.Dominio.csproj"/>
     <ProjectReference Include="..\sipsa.Dados\sipsa.Dados.csproj"/>
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.3.17.4"/>
-    <PackageReference Include="Microsoft.AspNetCore.App"/>
     <PackageReference Include="AutoMapper" Version="8.0.0"/>
   </ItemGroup>
-  <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-  </PropertyGroup>
+
 </Project>

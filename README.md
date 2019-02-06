@@ -1,7 +1,7 @@
 # SIPSA
 <b>Sistema da Igreja Presbiteriana de Santo Amaro</b>
 
-Asp.net Core 2.2 MVC
+Asp.net Core 3.0 MVC
 
 DynamoDB
 

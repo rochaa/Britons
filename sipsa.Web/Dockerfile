@@ -1,16 +1,16 @@
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM microsoft/dotnet:3.0.100-preview2-sdk AS build
 WORKDIR /app
 
 # Build da aplicacao
 COPY . ./
-RUN dotnet publish ./sipsa.Web -c Release -o publish
+RUN dotnet publish ./sipsa/sipsa.Web -c Release -o out
 
 # Build da imagem
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
+FROM microsoft/dotnet:3.0.0-preview2-aspnetcore-runtime
 WORKDIR /app
-COPY --from=build /app/sipsa.Web/publish .
+COPY --from=build /app/out .
 
 # ENV AQUI
 
 EXPOSE 80
-ENTRYPOINT ["dotnet", "sipsa.Web.Views.dll"]
+ENTRYPOINT ["dotnet", "sipsa.Web.dll"]

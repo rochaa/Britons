@@ -51,7 +51,7 @@ namespace sipsa.Web {
             services.AddMvc (options => {
                     options.Filters.Add (new SipsaExceptionFilterAttribute ());
                 })
-                .SetCompatibilityVersion (CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion (CompatibilityVersion.Version_3_0);
 
             // Injeção das classes do sistema.
             services.AddScoped (typeof (IUsuarioRepositorio), typeof (UsuarioRepositorio));
