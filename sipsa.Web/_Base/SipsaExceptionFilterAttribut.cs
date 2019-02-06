@@ -17,9 +17,9 @@ namespace sipsa.Web._Base
             IList<ValidationFailure> erros;
             var result = new ViewResult();
 
-            if (exception is DominioException)
+            if (exception is DominioExcecao)
             {
-                var exDominio = exception as DominioException;
+                var exDominio = exception as DominioExcecao;
                 erros = exDominio.Erros;
             }
             else

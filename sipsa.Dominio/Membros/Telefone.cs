@@ -3,7 +3,7 @@ using sipsa.Dominio._Base;
 
 namespace sipsa.Dominio.Membros
 {
-    public class Telefone : Entidade<Telefone>
+    public class Telefone : Entidade
     {
         public string Numero { get; private set; }
         public Membro Membro { get; private set; }
@@ -13,14 +13,14 @@ namespace sipsa.Dominio.Membros
             Numero = numero;
             Membro = membro;
 
-            Regras();
-            Validar(this);
+            //Regras();
+            //Validar(this);
         }
 
-        private void Regras()
-        {
-            RuleFor(t => t.Numero)
-                .NotEmpty().WithMessage("Telefone está vazio.");
-        }
+        // private void Regras()
+        // {
+        //     RuleFor(t => t.Numero)
+        //         .NotEmpty().WithMessage("Telefone está vazio.");
+        // }
     }
 }

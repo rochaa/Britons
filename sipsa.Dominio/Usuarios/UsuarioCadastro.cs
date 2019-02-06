@@ -39,7 +39,7 @@ namespace sipsa.Dominio.Usuarios
         {
             var usuarioComEmailJaExistente = await _usuarioRepositorio.ObterPorEmailAsync(email);
             if (usuarioComEmailJaExistente != null)
-                throw new DominioException("UsuarioCadastro.ArmazenarAsync", EmailJaExistente);
+                throw new DominioExcecao("UsuarioCadastro.ArmazenarAsync", EmailJaExistente);
         }
     }
 }

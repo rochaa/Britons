@@ -6,7 +6,7 @@ using sipsa.Dominio._Base;
 
 namespace sipsa.Dados.Repositorios
 {
-    public class _Repositorio<TEntidade> : IRepositorio<TEntidade> where TEntidade : Entidade<TEntidade>
+    public class _Repositorio<TEntidade> : IRepositorio<TEntidade> where TEntidade : Entidade
     {
         private readonly SipsaContexto _contexto;
         private DynamoDBOperationConfig _config;
