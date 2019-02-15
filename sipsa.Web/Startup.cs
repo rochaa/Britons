@@ -58,11 +58,13 @@ namespace sipsa.Web {
             services.AddScoped (typeof (IMembroRepositorio), typeof (MembroRepositorio));
             services.AddScoped<UsuarioAutenticacao> ();
             services.AddScoped<UsuarioCadastro> ();
+            services.AddScoped<MembroCadastro> ();
 
             // Mapeamento das classes de domínio com os modelos.
             Mapper.Initialize (cfg => {
                 cfg.CreateMap<Usuario, UsuarioModel> ();
                 cfg.CreateMap<UsuarioModel, Usuario> ();
+                cfg.CreateMap<MembroModel, MembroDto> ();
             });
         }
 

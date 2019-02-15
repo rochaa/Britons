@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace sipsa.Web.Models {
-    public class MembroModel {
+namespace sipsa.Dominio.Membros {
+    public class MembroDto {
         public string Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }

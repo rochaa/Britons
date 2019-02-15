@@ -11,13 +11,13 @@ namespace sipsa.Dados.Repositorios {
 
         }
 
-        public Task<List<Membro>> ObterOsUltimosMembrosModificadosAsync () {
+        public async Task<List<Membro>> ObterOsUltimosMembrosModificadosAsync () {
             // List<ScanCondition> filtros = new List<ScanCondition> {
             //     new ScanCondition ("Email", ScanOperator.Equal, email)
             // };
 
-            // var usuarios = await ObterComFiltrosAsync (filtros);
-            return null;
+            var membros = await ObterTodosAsync();
+            return membros;
         }
     }
 }
