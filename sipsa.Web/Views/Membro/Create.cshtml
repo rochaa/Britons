@@ -10,37 +10,28 @@
     <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Dados pessoais</h3>
-                </div>
-                <div class="panel-body">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Dados pessoais</h5>
+                    <hr />
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label asp-for="Nome" class="control-label"></label>
                             <input asp-for="Nome" class="form-control" />
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label asp-for="DataNascimento" class="control-label"></label>
                             <input asp-for="DataNascimento" class="form-control" />
                         </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="Naturalidade" class="control-label"></label>
-                            <input asp-for="Naturalidade" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label asp-for="Naturalidade" class="control-label"></label>
-                            <input asp-for="Naturalidade" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="EstadoCivil" class="control-label"></label>
-                            <input asp-for="EstadoCivil" class="form-control" />
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="Escolaridade" class="control-label"></label>
-                            <input asp-for="Escolaridade" class="form-control" />
+                        <div class="form-group col-md-3">
+                            <label asp-for="Igreja"></label>
+                            <select asp-for="Igreja" class="form-control">
+                                <option selected></option>
+                                <option value="SANTOAMARO">IP Santo Amaro</option>
+                                <option value="HORIZONTEAZUL">IP Horizonte Azul</option>
+                                <option value="GRAJAU">IP Grajau</option>
+                                <option value="JARDIMDASFONTES">IP Jardim das fontes</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -49,19 +40,81 @@
                             <input asp-for="Profissao" class="form-control" />
                         </div>
                         <div class="form-group col-md-4">
-                            <label asp-for="Titulo" class="control-label"></label>
-                            <input asp-for="Titulo" class="form-control" />
+                            <label asp-for="Naturalidade" class="control-label"></label>
+                            <input asp-for="Naturalidade" class="form-control" />
                         </div>
-                        <div class="form-group col-md-4">
-                            <label asp-for="Igreja" class="control-label"></label>
-                            <input asp-for="Igreja" class="form-control" />
+                        <div class="form-group col-md-3">
+                            <label asp-for="EstadoCivil"></label>
+                            <select asp-for="EstadoCivil" class="form-control">
+                                <option selected></option>
+                                <option value="SOLTEIRO">Solteiro(a)</option>
+                                <option value="CASADO">Casado(a)</option>
+                                <option value="DIVORCIADO">Divorciado(a)</option>
+                                <option value="VIUVO">Viuvo(a)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label asp-for="Escolaridade"></label>
+                            <select asp-for="Escolaridade" class="form-control">
+                                <option selected></option>
+                                <option value="EDUCACAOINFANTIL">Educação infantil</option>
+                                <option value="FUNDAMENTAL">Fundamental</option>
+                                <option value="MEDIO">Médio</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="POSGRADUACAO">Pós-Graduação</option>
+                                <option value="MESTRADO">Mestrado</option>
+                                <option value="DOUTORADO">Doutorado</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="Titulo"></label>
+                            <select asp-for="Titulo" class="form-control">
+                                <option selected></option>
+                                <option value="MEMBRO">Membro</option>
+                                <option value="DIACONO">Diácono</option>
+                                <option value="PRESBITERO">Presbítero</option>
+                                <option value="PASTOR">Pastor</option>
+                        </select>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Telefones</h5>
+                    <hr />
+                    <div class="form-row">
+                        <div class="col-md-2">
+                            <input asp-for="Telefone" class="form-control" />
+                        </div>
+                        <div class="col-md-1">
+                            <input asp-action="AdicionarTelefone" type="submit" value="+" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    @if (Model.Telefones != null)
+                    {
+                        var i = 0;
+                        @foreach (var telefone in Model.Telefones)
+                        {
+                            <div class="form-row">
+                                <div class="col-md-2">
+                                    <input asp-for="@Model.Telefones[i]" class="form-control" readonly/>
+                                </div>
+                                <div class="col-md-1">
+                                    <input asp-action="RemoverTelefone" type="submit" value="X" class="btn btn-danger" />
+                                </div>
+                            </div>
+                             i++;
+                        }
+                    }
+                </div>
+            </div>
+            <br>
             <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-success" />
+                <input asp-action="CriarMembro" type="submit" value="Criar" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -73,3 +126,4 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+

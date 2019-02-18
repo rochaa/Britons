@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -6,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using sipsa.Dominio.Membros;
 using sipsa.Web.Models;
 
-namespace sipsa.Web.Controllers
-{
+namespace sipsa.Web.Controllers {
     [Authorize]
     public class MembroController : Controller {
         private readonly IMembroRepositorio _membroRepositorio;
@@ -26,13 +26,26 @@ namespace sipsa.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create () {
-            return View ();
+        public IActionResult Create (MembroModel membroModel) {
+            return View (membroModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create (MembroModel membroModel) {
+        public async Task<IActionResult> CriarMembro (MembroModel membroModel) {
             return await CriarOuAtualizarMembro (membroModel);
+        }
+
+        public async Task<IActionResult> AdicionarTelefone (MembroModel membroModel) {
+            if (!string.IsNullOrEmpty (membroModel.Telefone))
+            {
+                if (membroModel.Telefones == null)
+                    membroModel.Telefones = new List<string>();
+
+                membroModel.Telefones.Add (membroModel.Telefone);
+            }
+
+            membroModel.Telefone = string.Empty;
+            return RedirectToAction ("Create", membroModel);
         }
 
         private async Task<IActionResult> CriarOuAtualizarMembro (MembroModel membroModel) {
