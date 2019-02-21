@@ -76,7 +76,7 @@
                                 <option value="DIACONO">Diácono</option>
                                 <option value="PRESBITERO">Presbítero</option>
                                 <option value="PASTOR">Pastor</option>
-                        </select>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -94,22 +94,73 @@
                             <input asp-action="AdicionarTelefone" type="submit" value="+" class="btn btn-primary" />
                         </div>
                     </div>
-                    @if (Model.Telefones != null)
+                    <br>
+                    @if (Model != null && Model.Telefones != null)
                     {
                         var i = 0;
                         @foreach (var telefone in Model.Telefones)
                         {
                             <div class="form-row">
                                 <div class="col-md-2">
-                                    <input asp-for="@Model.Telefones[i]" class="form-control" readonly/>
+                                    <label class="telefone-itens">@Model.Telefones[i]</label>
+                                    <input type="hidden" asp-for="@Model.Telefones[i]" class="form-control" />
                                 </div>
-                                <div class="col-md-1">
-                                    <input asp-action="RemoverTelefone" type="submit" value="X" class="btn btn-danger" />
-                                </div>
+                                <a href="#" onclick="$(this).parent().remove();" class="btn btn-danger telefone-botao">x</a>
                             </div>
-                             i++;
+                            i++;
                         }
                     }
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Endereço</h5>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label asp-for="Cep" class="control-label"></label>
+                            <input asp-for="Cep" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label asp-for="Bairro" class="control-label"></label>
+                            <input asp-for="Bairro" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label asp-for="Logradouro" class="control-label"></label>
+                            <input asp-for="Logradouro" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Admissão</h5>
+                    <hr />
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label asp-for="DataAdmissao" class="control-label"></label>
+                            <input asp-for="DataAdmissao" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label asp-for="Ata" class="control-label"></label>
+                            <input asp-for="Ata" class="form-control" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="Recepcao"></label>
+                            <select asp-for="Recepcao" class="form-control">
+                                <option selected></option>
+                                <option value="BATISMO">Batismo</option>
+                                <option value="PROFISSAOFE">Profissão de fé</option>
+                                <option value="BATISMOPROFISSAOFE">Batimos e Profissão de fé</option>
+                                <option value="JURISDICAO">Jurisdição</option>
+                                <option value="CT">CT</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <br>
@@ -125,5 +176,13 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
 
+    <script>
+        $(document).ready(function(){
+            $("#Telefone").inputmask("(99) 9999[9]-9999");
+        });
+        $(document).ready(function(){
+            $("#Cep").inputmask("99999-999");
+        });
+    </script>
+}

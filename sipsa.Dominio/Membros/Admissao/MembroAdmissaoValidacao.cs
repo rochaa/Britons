@@ -10,7 +10,7 @@ namespace sipsa.Dominio.Membros {
 
         public void InserirRegras () {
             RuleFor (a => a.Data)
-                .Must (d => d == null || d >= DateTime.Now).WithMessage ("Data de admissão maior que a data atual");
+                .Must (d => d == null || d <= DateTime.Now).WithMessage ("Data de admissão maior que a data atual");
 
             RuleFor (a => a.Ata);
 

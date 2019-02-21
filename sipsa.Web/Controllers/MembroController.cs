@@ -31,16 +31,16 @@ namespace sipsa.Web.Controllers {
         }
 
         [HttpPost]
+        [ActionName ("Create")]
         public async Task<IActionResult> CriarMembro (MembroModel membroModel) {
             return await CriarOuAtualizarMembro (membroModel);
         }
 
-        public async Task<IActionResult> AdicionarTelefone (MembroModel membroModel) {
-            if (!string.IsNullOrEmpty (membroModel.Telefone))
-            {
-                if (membroModel.Telefones == null)
-                    membroModel.Telefones = new List<string>();
+        public IActionResult AdicionarTelefone (MembroModel membroModel) {
+            if (membroModel.Telefones == null)
+                membroModel.Telefones = new List<string> ();
 
+            if (!string.IsNullOrEmpty (membroModel.Telefone) && !membroModel.Telefones.Any (t => t == membroModel.Telefone)) {
                 membroModel.Telefones.Add (membroModel.Telefone);
             }
 

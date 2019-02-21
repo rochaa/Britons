@@ -65,6 +65,13 @@ namespace sipsa.Web {
                 cfg.CreateMap<Usuario, UsuarioModel> ();
                 cfg.CreateMap<UsuarioModel, Usuario> ();
                 cfg.CreateMap<MembroModel, MembroDto> ();
+                cfg.CreateMap<Membro, MembroModel> ()
+                    .ForMember (m => m.Logradouro, a => a.MapFrom (s => s.Endereco.Logradouro))
+                    .ForMember (m => m.Bairro, a => a.MapFrom (s => s.Endereco.Bairro))
+                    .ForMember (m => m.Cep, a => a.MapFrom (s => s.Endereco.Cep))
+                    .ForMember (m => m.DataAdmissao, a => a.MapFrom (s => s.Admissao.Data))
+                    .ForMember (m => m.Ata, a => a.MapFrom (s => s.Admissao.Ata))
+                    .ForMember (m => m.Recepcao, a => a.MapFrom (s => s.Admissao.Recepcao));
             });
         }
 

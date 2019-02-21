@@ -16,7 +16,7 @@ namespace sipsa.Dominio.Membros {
         public string Logradouro { get; set; }
         public string Bairro { get; set; }
         public string Cep { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime? DataAdmissao { get; set; }
         public int Ata { get; set; }
         public string Recepcao { get; set; }
     }

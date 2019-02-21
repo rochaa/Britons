@@ -9,7 +9,7 @@ namespace System {
         }
 
         public static bool CepValido (this string value) {
-            Regex cepRegex = new Regex ("@[0-9]{5}-[0-9]{3}");
+            Regex cepRegex = new Regex (@"[0-9]{5}-[0-9]{3}");
 
             return !string.IsNullOrEmpty (value) && cepRegex.Match (value).Success;
         }

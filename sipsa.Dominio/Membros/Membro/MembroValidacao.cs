@@ -15,7 +15,7 @@ namespace sipsa.Dominio.Membros {
 
             RuleFor (m => m.DataNascimento)
                 .NotEmpty ().WithMessage ("Data de nascimento está vazia")
-                .Must (d => d >= DateTime.Now).WithMessage ("Data de nascimento maior que a data atual");
+                .Must (d => d <= DateTime.Now).WithMessage ("Data de nascimento maior que a data atual");
 
             RuleFor (m => m.Naturalidade);
 

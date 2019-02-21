@@ -15,6 +15,8 @@ namespace sipsa.Dominio.Membros {
             membroEnderecoValidacao.Validar (this);
         }
 
+        public MembroEndereco () { }
+
         private void PreencherMembroEndereco (string logradouro, string bairro, string cep) {
             Logradouro = logradouro;
             Bairro = bairro;

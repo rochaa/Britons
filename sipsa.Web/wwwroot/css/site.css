@@ -83,3 +83,13 @@ body {
   font-size: 14px;
   color: steelblue;
 }
+
+.telefone-itens {
+  padding: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.telefone-botao {
+  margin: 8px;
+}

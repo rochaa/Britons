@@ -49,7 +49,7 @@ namespace sipsa.Dominio.Membros {
             Igreja = membroDto.Igreja;
             Telefones = membroDto.Telefones;
             Endereco = new MembroEndereco(membroDto.Logradouro, membroDto.Bairro, membroDto.Cep);
-            Admissao = new MembroAdmissao(membroDto.Data, membroDto.Ata, membroDto.Recepcao);
+            Admissao = new MembroAdmissao(membroDto.DataAdmissao, membroDto.Ata, membroDto.Recepcao);
         }
     }
 }

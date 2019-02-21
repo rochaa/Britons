@@ -14,6 +14,8 @@ namespace sipsa.Dominio.Membros {
             membroAdmissaoValidacao.Validar (this);
         }
 
+        public MembroAdmissao () { }
+
         private void PreencherMembroAdmissao(DateTime? data, int? ata, string recepcao)
         {
             Data = data;
