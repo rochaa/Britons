@@ -1,15 +1,16 @@
 @model sipsa.Web.Models.MembroModel
 
 @{
-    ViewData["Title"] = "Membro - Novo";
+    ViewData["Title"] = "Membro - Cadastro";
 }
 
-<h2>Novo</h2>
+<h2>Cadastro</h2>
 <h4>Membro</h4>
 <hr />
     <div class="col-md-12">
-        <form asp-action="Create">
+        <form asp-action="SalvarMembro">
             <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="Id" class="form-control" type="hidden" />
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Dados pessoais</h5>
@@ -91,25 +92,26 @@
                             <input asp-for="Telefone" class="form-control" />
                         </div>
                         <div class="col-md-1">
-                            <input asp-action="AdicionarTelefone" type="submit" value="+" class="btn btn-primary" />
+                            <a href="#" onclick="AdicionarTelefone()" class="btn btn-primary">+</a>
                         </div>
                     </div>
                     <br>
-                    @if (Model != null && Model.Telefones != null)
-                    {
-                        var i = 0;
-                        @foreach (var telefone in Model.Telefones)
-                        {
-                            <div class="form-row">
-                                <div class="col-md-2">
-                                    <label class="telefone-itens">@Model.Telefones[i]</label>
-                                    <input type="hidden" asp-for="@Model.Telefones[i]" class="form-control" />
-                                </div>
-                                <a href="#" onclick="$(this).parent().remove();" class="btn btn-danger telefone-botao">x</a>
-                            </div>
-                            i++;
-                        }
-                    }
+                    <div class="form-row">
+                        <ol id="TelefonesLista">
+                            @if (Model != null && Model.Telefones != null)
+                            {
+                                var i = 0;
+                                @foreach (var telefone in Model.Telefones)
+                                {
+                                    <li>
+                                        <label class="telefone-itens">@Model.Telefones[i]</label>
+                                        <input type="hidden" asp-for="@Model.Telefones[i]" class="form-control" />
+                                        <a href="#" onclick="$(this).parent().remove();" class="btn btn-danger telefone-botao">x</a>
+                                    </li>    
+                                    i++;
+                                }
+                            }
+                    </div>
                 </div>
             </div>
             <br>
@@ -165,7 +167,7 @@
             </div>
             <br>
             <div class="form-group">
-                <input asp-action="CriarMembro" type="submit" value="Criar" class="btn btn-success" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -176,13 +178,4 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-    <script>
-        $(document).ready(function(){
-            $("#Telefone").inputmask("(99) 9999[9]-9999");
-        });
-        $(document).ready(function(){
-            $("#Cep").inputmask("99999-999");
-        });
-    </script>
 }

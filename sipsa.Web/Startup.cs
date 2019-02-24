@@ -72,6 +72,7 @@ namespace sipsa.Web {
                     .ForMember (m => m.DataAdmissao, a => a.MapFrom (s => s.Admissao.Data))
                     .ForMember (m => m.Ata, a => a.MapFrom (s => s.Admissao.Ata))
                     .ForMember (m => m.Recepcao, a => a.MapFrom (s => s.Admissao.Recepcao));
+                cfg.CreateMap<MembroModel, Membro> ();
             });
         }
 

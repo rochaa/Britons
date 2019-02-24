@@ -1,0 +1,109 @@
+@model sipsa.Web.Models.MembroModel
+
+@{
+    ViewData["Title"] = "Membro - Detalhes";
+}    
+<h2>Detalhes</h2>
+<div>    
+    <h4>Membro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Naturalidade)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naturalidade)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCivil)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Escolaridade)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Escolaridade)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Profissao)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Profissao)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Igreja)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Igreja)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefones)    
+        </dt>
+        @foreach (var item in Model.Telefones)
+        {
+            <dd>
+                @Html.DisplayFor(model => item)
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Logradouro)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Logradouro)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bairro)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bairro)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cep)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cep)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataAdmissao)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataAdmissao)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ata)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ata)    
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Recepcao)    
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Recepcao)    
+        </dd>
+    </dl>    
+</div>    
+<div>    
+    <a asp-action="CreateOrUpdate" asp-route-id="@Model.Id">Alterar</a> |    
+    <a asp-action="Index">Voltar</a>
+</div>
