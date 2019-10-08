@@ -1,5 +1,5 @@
-# SIPSA
-<b>Sistema da Igreja Presbiteriana de Santo Amaro</b>
+# Britons
+<b>Tests basic CRUD</b>
 
 Asp.net Core 3.0 MVC
 
